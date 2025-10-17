@@ -1,0 +1,40 @@
+.ad {
+  position: absolute;
+  width: 220px;
+  background: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  animation: pop-in 0.3s ease-out forwards;
+}
+
+.adHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px;
+  background: #f0f0f0;
+  cursor: grab;
+  border-bottom: 1px solid #ccc;
+  border-radius: 4px 4px 0 0;
+}
+
+.ad p {
+  padding: 16px;
+  margin: 0;
+  font-size: 14px;
+  text-align: center;
+}
+
+.closeBtn {
+  cursor: pointer;
+  border: none;
+  background: #ff5f57;
+  color: white;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  font-weight: bold;
+  line-height: 18px;
+  text-align: center;
+}

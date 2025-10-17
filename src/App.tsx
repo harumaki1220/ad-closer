@@ -1,35 +1,52 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import styles from "./App.module.css";
+import adStyles from "./Ad.module.css";
 
-function App() {
-  const [count, setCount] = useState(0)
+type AdProps = {
+  id: number;
+  onClose: (id: number) => void;
+};
+
+type AdInfo = {
+  id: number;
+};
+
+function Ad({ id, onClose }: AdProps) {
+  const style = {
+    top: `${Math.random() * 80}%`,
+    left: `${Math.random() * 80}%`,
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+    <div className={adStyles.ad} style={style}>
+      <div className={adStyles.adHeader}>
+        <span>広告</span>
+        <button className={adStyles.closeBtn} onClick={() => onClose(id)}>
+          ×
         </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+      <p>広告を閉じてください</p>
+    </div>
+  );
 }
 
-export default App
+function App() {
+  const [ads, setAds] = useState<AdInfo[]>([{ id: 1 }]);
+
+  const handleCloseAd = (id: number) => {
+    console.log(`閉じるボタンが押されました: ${id}`);
+    setAds((currentAds) => currentAds.filter((ad) => ad.id !== id));
+  };
+
+  return (
+    <div className={styles.container}>
+      <div className={styles.gameArea}>
+        {ads.map((ad) => (
+          <Ad key={ad.id} id={ad.id} onClose={handleCloseAd} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default App;
