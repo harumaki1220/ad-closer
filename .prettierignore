@@ -1,0 +1,33 @@
+# 依存関係
+
+node_modules
+
+
+
+# ビルド成果物
+
+dist
+
+build
+
+.next
+
+.vite
+
+
+
+# ロックファイル
+
+package-lock.json
+
+yarn.lock
+
+pnpm-lock.yaml
+
+
+
+# キャッシュやログ
+
+.DS_Store
+
+*.log
