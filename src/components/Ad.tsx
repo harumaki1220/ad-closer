@@ -1,27 +1,22 @@
-import adStyles from "./Ad.module.css";
+import SimpleAd from './SimpleAd';
+import AnnoyingAd from './AnnoyingAd';
 
 type AdProps = {
-  id: number;
-  onClose: (id: number) => void;
-};
+    id: number
+    type: 'simple' | 'annoying'
+    top: number
+    left: number
+    onClose: (id: number) => void
+}
 
-function Ad({ id, onClose }: AdProps) {
-  const style = {
-    top: `${Math.random() * 80}%`,
-    left: `${Math.random() * 80}%`,
-  };
-
-  return (
-    <div className={adStyles.ad} style={style}>
-      <div className={adStyles.adHeader}>
-        <span>広告</span>
-        <button className={adStyles.closeBtn} onClick={() => onClose(id)}>
-          ×
-        </button>
-      </div>
-      <p>広告を閉じてください</p>
-    </div>
-  );
+function Ad({ id, type, top, left, onClose }: AdProps) {
+    switch (type) {
+        case 'annoying':
+            return <AnnoyingAd top={top} left={left }onClose={() => onClose(id)}/>
+        case 'simple':
+        default:
+            return <SimpleAd id={id} top={top} left={left} onClose={() => onClose(id)}/>
+    }
 }
 
 export default Ad;
